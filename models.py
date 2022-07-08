@@ -2,9 +2,9 @@ from sqlalchemy import create_engine,Column, Integer,String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base, engine
 from datetime import datetime
-import uuid
+import uuid  
 from sqlalchemy.dialects.postgresql import UUID
-
+ 
 class Department(Base):
     __tablename__="department"
 
@@ -13,7 +13,7 @@ class Department(Base):
         primary_key=True,
         default=uuid.uuid4,
 )
-    name=Column(String)
+    name=Column(varchar)
 
 class Employee(Base):
     __tablename__="employee"
@@ -23,13 +23,13 @@ class Employee(Base):
         primary_key=True,
         default=uuid.uuid4,
 )
-    name=Column(String)
-    address=Column(String)
-    email_id=Column(String)
-    department=Column(UUID,ForeignKey("department.id"))
-    salary=Column(Integer)
-    phone_number=Column(Integer)
-    head=Column(Boolean)
+    name=Column(varchar)
+    address=Column(varchar)
+    email_id=Column(varchar)
+    department=Column(varchar)
+    salary=Column(varchar)
+    phone_number=Column(varchar)
+    head=Boolean
     time=Column(DateTime(timezone=True))
 
 

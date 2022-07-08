@@ -3,7 +3,7 @@ import urllib
 from sqlalchemy import create_engine
 import sqlalchemy
 from sqlalchemy.orm import session
-from sqlalchemy.ext.declaration import declarative_base
+from sqlalchemy.ext.declarative import declarative_base
 
 
 
