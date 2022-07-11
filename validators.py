@@ -63,4 +63,41 @@ class DepartmentResponse(BaseModel):
     name:str
 
     class Config:
-        orm_mode=True
+        orm_mode = True 
+
+class Application(BaseModel):
+    id = uuid.UUID
+    application_id = uuid.UUID
+    application_type = str
+    from_date = str
+    to_date = str
+    reason = str
+    status = str
+    balance_before_approval = str
+    balance_after_approval = str
+
+
+    class Config:
+        orm_mode = True 
+
+class position(BaseModel):
+    id = uuid.UUID
+    position = str
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
