@@ -1,10 +1,9 @@
 import os
 import urllib
-from sqlalchemy import create_engine
+from sqlalchemy  import create_engine
 import sqlalchemy
 from sqlalchemy.orm import session
 from sqlalchemy.ext.declarative import declarative_base
-
 
 
 host_server = os.environ.get('host_server', 'localhost')
@@ -16,7 +15,11 @@ ssl_mode = urllib.parse.quote_plus(str(os.environ.get('ssl_mode','prefer')))
 DATABASE_URL = 'postgresql://{}:{}@{}:{}/{}?sslmode={}'.format(db_username, db_password, host_server, db_server_port, database_name, ssl_mode)
 
 
+
+
+
 engine = create_engine(DATABASE_URL,echo=True)
 sessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
 Base = declarative_base()
+

@@ -1,6 +1,9 @@
 
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import session
+from typing import List
+from sqlalchemy.orm import Session
+
 from database import sessionLocal
 
 app=FastAPI(debug=True)
@@ -16,7 +19,7 @@ def get_db():
 #_____________employee apis _______________#
 
 
-@app.get("/empployee/", response_model = List[employee])
+@app.get("/empployee/", response_model = List[EmployeeResponse])
 async def read(db : session = Depends(get_db)):
 
 	result = db.query(employee).all()
@@ -168,10 +171,10 @@ async def delete(id : str, department : DepartmentRequest, db : Session = Depend
    dep_dict = department.dict(exclude_unset = True)
    for key, value in dep_dict.items():
        setattr(obj,key, values)
-    obj.add(obj)
-    db.commit()
-    db.refresh(obj)
-    return obj
+   db.add(obj)
+   db.commit()
+   db.refresh(obj)
+   return obj
 
 
 
@@ -180,7 +183,7 @@ async def delete(id : str, department : DepartmentRequest, db : Session = Depend
 
 
 
-@app.get("/application/",response_model = List[application])
+@app.get("/application/",response_model = List[ApplicationResponse])
 async def read_all(db : Session = Depends(get_db)):
     obj = db.query(application).all()
     if not obj:
@@ -202,7 +205,7 @@ async def read_by_id( id : str, db : Session = Depends(get_db),):
 
 
 @app.post("/application/",response_model = ApplicationResponse)
-async def create( employee : Employeerequest, db : Session = Depends(get_db)):
+async def create( application : Applicationrequest, db : Session = Depends(get_db)):
     obj_dict = application.dict()
     app = application(**obj_dict)
     db.add(app)
@@ -227,10 +230,67 @@ async def update( id : str, app : ApplicationRequest, db : Session = Depends(get
     return obj
 
 
-
+ 
 @app.delete("/application/{id}",response_model = ApplicationReponse)
-async def delete(id : str, db : Session = Depends(get_db),):
-    obj =
+async def delete(email_id : str, db : Session = Depends(get_db),):
+    obj = db.query(application).where(application_email_id == email_id).first()
+    if not obj:
+        raise HTTPException(status_code = 404, details = "Details not found")
+    db.delete(obj)
+    db.commit()
+    db.close()
+    return "Success"
+
+
+
+
+#================position api=====================#
+
+
+
+@app.get("/position/",response_model = List[positionResponse])
+async def read_all( db: Session = Depends(get_db)):
+    obj = db.query(application).all()
+    return obj
+
+
+
+@app.get("/application/{id}",response_model = PositionResponse)
+async def read_by_id( id : str, db : Session = Depends(get_db)):
+    obj = db.query(position).where(position_id == id).first()
+    if not obj:
+        raise HTTPExcception(status_code = 404, details = 'details not found')
+    return obj
+
+
+
+@app.post("/position/",response_model = positionResponse)
+async def create( position : PositionRequest, db : Session = Depends(get_db)):
+    obj_dict = position.dict()
+    obj = position(**obj_dict)
+    db.add(obj)
+    db.commit()
+    db.refresh(obj)
+    return obj
+
+
+@app.patch("/position/{id}",response_model = PositionResponse)
+async def update(position : Positionrequest):
+    obj = db.query(position).where(position_id == id).first()
+    if not obj:
+        raise HTTPException(status_code = 404, details = "details not found")
+    return obj
+
+
+@app.delete("/position/{id}",response_tabe = PostionResponse)
+async def delete(db : Session = Depends(get_db)):
+    obj = db.query(position).where(position_id == id).first()
+    if not obj:
+        raise HTTPException( status_code = 404, details = "details not found")
+    db.delete(obj)
+    db.commit()
+    db.close()
+    return "Success"
 
 
 
