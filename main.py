@@ -19,45 +19,45 @@ def get_db():
 #_____________employee apis _______________#
 
 
-@app.get("/empployee/", response_model = List[EmployeeResponse])
-async def read(db : session = Depends(get_db)):
-
-	result = db.query(employee).all()
-	if not result:
-		raise HTTPException(
-			status_code = 404,
-			detail = "details not found",
-			)
-	return result
-
-
-
-@app.post("/employee/",response_model = EmployeeResponse)
-async def create(
-	employee : EmployeeReques,
-	db : session = Depends(get_dba),
-):
-
-
-    employee_dict = employee.dict()
-    result = db.query(employee).where(employee.email_id == employee_dict["email_id"])
-    if result:
-    	raise HTTPException(
-    		sttaus_code = 422,
-    		detail = "email already exists",
-    )
-
-
-    	emp = employee(**employee_dict)
-    	db.add(emp)
-    	db.commit(emp)
-    	db.refresh(emp)
-    	print(emp)
-
-    	return employee
-
-
-
+#@app.get("/empployee/", response_model = List[EmployeeResponse])
+#async def read(db : session = Depends(get_db)):
+#
+#	result = db.query(employee).all()
+#	if not result:
+#		raise HTTPException(
+#			status_code = 404,
+#			detail = "details not found",
+#			)
+#	return result
+#
+#
+#
+#@app.post("/employee/",response_model = EmployeeResponse)
+#async def create(
+#	employee : EmployeeReques,
+#	db : session = Depends(get_dba),
+#):
+#
+#
+#    employee_dict = employee.dict()
+#    result = db.query(employee).where(employee.email_id == employee_dict["email_id"])
+#    if result:
+#    	raise HTTPException(
+#    		sttaus_code = 422,
+#    		detail = "email already exists",
+#    )
+#
+#
+#    	emp = employee(**employee_dict)
+#    	db.add(emp)
+#    	db.commit(emp)
+#    	db.refresh(emp)
+#    	print(emp)
+#
+#    	return employee
+#
+#
+#
 @app.get("/employee/{id}/",response_model = EmployeeResponse)
 async def get_by_id(
 	id = str,
