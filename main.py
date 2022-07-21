@@ -133,7 +133,7 @@ async def delete(
         raise HTTPException( status_code = 404, detail = "Employee with id {} does not exist".format(employee_id))
     db. delete(obj)
     db.commit()
-    return {"ok": "True"}
+    return {"msg" : "Success"}
 
 
 
@@ -223,7 +223,7 @@ async def delete(
    db.delete(obj)
    db.commit()
    db.refresh(obj)
-   return {"ok": "True"}
+   return {"msg" : "Success"}
 
 
 
@@ -303,7 +303,7 @@ async def delete(id : str,
     db.delete(obj)
     db.commit()
     db.close()
-    return "Success"
+    return {"msg" : "Success"}
 
 
 #================position api=====================#
