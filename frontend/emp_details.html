@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background :rgb(171, 171, 225);
+        }
+        .module2{
+            background: white;
+            color: black;
+            margin-left: 300px;
+            margin-right: 300px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+    </style>
+    </head>
+    <body>
+        <div class ="module2">
+            <center>
+            <h2><b>Details of Employee </b></h2><br><br>
+            {% for Emp in result %}
+            <label>
+                Id :
+            </label>
+            <label>{{Emp.id}}</label><br><br>
+            <label>First name :
+            </label>
+            <label>{{Emp.first_name}</label><br><br>
+            <label>
+                last name :
+            </label>
+            <label>{{Emp.last_name}}</label><br><br>
+            <label>
+                Date of birth :
+            </label>
+            <label>{{Emp.date_of_birth}}</label><br><br>
+            <label>
+                Gender :
+            </label>
+            <label>{{Emp.Gender}}</label><br><br>
+            <label>
+                Phone number :
+            </label>
+            <label>{{Emp.phone_no}}</label><br><br>
+            <label>
+                Personal email id :
+                </label>
+            <label>{{Emp.personal_email_id}}</label><br><br>
+            <label>
+                Company email id :
+            </label>
+            <label>{{Emp.company_email_id}}</label><br><br>
+            <label>
+                Address :
+            </label>
+            <label>{{Emp.address}}</label><br><br>
+            <label>
+                Department id :
+            </label>
+            <label>{{Emp.department}}</label><br><br>
+            <label>
+                Is Department head :
+            </label>
+            <label>{{Emp.is_department_head}}</label><br><br>
+            <label>
+                Reporting manager :
+            </label>
+            <label>{{Emp.reporting_manager}}</label><br><br>
+            <label>
+                Leave balance :
+            </label>
+            <label>{{Emp.leave_balance}}</label><br><br>
+            <label>
+                Work from home balance :
+            </label>
+            <label>{{Emp.wfh_balance}}</label><br><br>
+            <label>
+                Position id :
+            </label>
+            <label>{{Emp.position_id}}</label><br><br>
+            </center>
+            {% endfor %}
+        </div>
+    </body>
+    </html>
