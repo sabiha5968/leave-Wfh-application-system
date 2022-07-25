@@ -80,6 +80,9 @@ class Application(Base):
         default=uuid4
     )
     application_type = Column(ENUM(ApplicationType))
+    name = Column(VARCHAR)
+    subject = Column(VARCHAR)
+    employee_subject = Column(VARCHAR)
     from_date = Column(DATE)
     to_date = Column(DATE)
     reason = Column(VARCHAR)

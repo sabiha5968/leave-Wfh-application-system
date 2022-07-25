@@ -82,6 +82,7 @@ class ApplicationRequest(BaseModel):
     employee_id : uuid.UUID
     application_type : ApplicationType
     from_date : date
+    subject:str
     to_date : date
     reason : str 
 
@@ -95,6 +96,7 @@ class ApplicationResponse(BaseModel):
     id :  uuid.UUID
     employee_id : uuid.UUID | None
     application_type : ApplicationType | None
+    subject:str | None
     from_date : date | None
     to_date : date | None
     reason : str | None
