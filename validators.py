@@ -81,10 +81,12 @@ class DepartmentResponse(BaseModel):
 class ApplicationRequest(BaseModel):
     employee_id : uuid.UUID
     application_type : ApplicationType
+    name : str 
+    subject : str 
     from_date : date
-    subject:str
     to_date : date
     reason : str 
+    position_id :uuid.UUID
 
 
     class config:
@@ -95,7 +97,7 @@ class ApplicationRequest(BaseModel):
 class ApplicationResponse(BaseModel):
     id :  uuid.UUID
     employee_id : uuid.UUID | None
-    application_type : ApplicationType | None
+    application_type : str | None
     subject:str | None
     from_date : date | None
     to_date : date | None
@@ -103,6 +105,7 @@ class ApplicationResponse(BaseModel):
     status : Status | None
     balance_before_approval : int | None
     balance_after_approval : int | None
+    position_id : uuid.UUID | None
     
 
     class Config:

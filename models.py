@@ -82,13 +82,13 @@ class Application(Base):
     application_type = Column(ENUM(ApplicationType))
     name = Column(VARCHAR)
     subject = Column(VARCHAR)
-    employee_subject = Column(VARCHAR)
     from_date = Column(DATE)
     to_date = Column(DATE)
     reason = Column(VARCHAR)
     status = Column(ENUM(Status))
     balance_before_approval = Column(Integer)
     balance_after_approval = Column(Integer)
+    position_id = Column(UUID(as_uuid= True))
     position = relationship("Employee", back_populates = "application")
 
 

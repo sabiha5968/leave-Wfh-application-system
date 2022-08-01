@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+
+    <style>
+        body{
+            background:rgb(171, 171, 225);
+        }
+    .module2{
+            background: white;
+            color:black;
+            align-items: center;
+            margin-left:300px;
+            margin-top : 100px;
+            margin-right:300px;
+            border-radius: 5px;
+            
+        }
+        .button {
+  display: inline block;
+  margin: 20px 0;
+  min-height: 50px;
+  padding: 13px 24px;
+  font-family: 'Lucida Grande', 'Helvetica', sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  border-width:4px;
+  border-style:none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-position: top center;
+  cursor: pointer;
+
+  }
+  .button2 {
+  position: relative;
+  color: var(--textColor2);
+  border-radius: 26px;
+  background-image: linear-gradient(90deg, #f80202, #b12ccc, #6554c0, #e8060e, #f5076a, #6942ef);
+  background-size: 400%;
+
+  }
+  h2{
+    font-family: serif;
+  }
+    </style>
+</head>
+<body>
+    <div class = "module2">
+        <center>
+        <h2><b>Dashboard</b></h2><br>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="container2">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Leave</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">work from home</a>
+          </li>
+        </ul>
+        <div id ="container2">
+          <table class="table">
+            <thead>
+            <tr>
+                
+            </tr>
+            </thead>
+            <tr>
+                <td><b>Employee name</b></td>
+                <td><b>Application type</b></td>
+                <td><b>Subject</b></td>
+                <td>                  </td>
+            </tr>
+            {% for i in obj %}
+            <tr>
+                <td>{{i.first_name}}{{i.last_name}}</td>
+                <td>{{i.application_type}}</td>
+                <td>{{i.subject}}</td>
+
+                <td>
+                  <form action = "/application/{{i.id}}" method ="get">
+                    <button class = "btn btn-danger"> View</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+        </center>
+
+
+    </div>
+    
+</body>
+</html>
